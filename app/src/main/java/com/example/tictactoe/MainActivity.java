@@ -50,19 +50,34 @@ public class MainActivity extends AppCompatActivity {
         button9 = findViewById(R.id.button9);
         playerTurn = findViewById(R.id.playerTurn);
         newGame = findViewById(R.id.buttonNewGame);
+
+        gameSetup();
+    }
+
+    public void gameSetup(){
+        // player setup
         player = 1;
         currentPlayer = currentPlayerIs(player);
 
         // put text in each one
-        button1.setText("");
-        button2.setText("");
-        button3.setText("");
-        button4.setText("");
-        button5.setText("");
-        button6.setText("");
-        button7.setText("");
-        button8.setText("");
-        button9.setText("");
+        button1.setEnabled(true);
+        button1.setText(" ");
+        button2.setEnabled(true);
+        button2.setText(" ");
+        button3.setEnabled(true);
+        button3.setText(" ");
+        button4.setEnabled(true);
+        button4.setText(" ");
+        button5.setEnabled(true);
+        button5.setText(" ");
+        button6.setEnabled(true);
+        button6.setText(" ");
+        button7.setEnabled(true);
+        button7.setText(" ");
+        button8.setEnabled(true);
+        button8.setText(" ");
+        button9.setEnabled(true);
+        button9.setText(" ");
         playerTurn.setText("Player " + currentPlayer + "'s turn");
         newGame.setText("New game");
     }
@@ -110,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
         } else if(v.equals(button9)){
             button9.setText(currentPlayer);
             nextTurn(button9);
+        } else if(v.equals(newGame)){
+            gameSetup();
         }
     }
 }
