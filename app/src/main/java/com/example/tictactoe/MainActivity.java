@@ -63,21 +63,21 @@ public class MainActivity extends AppCompatActivity {
         button1.setEnabled(true);
         button1.setText(" ");
         button2.setEnabled(true);
-        button2.setText(" ");
+        button2.setText("  ");
         button3.setEnabled(true);
-        button3.setText(" ");
+        button3.setText("   ");
         button4.setEnabled(true);
-        button4.setText(" ");
+        button4.setText("    ");
         button5.setEnabled(true);
-        button5.setText(" ");
+        button5.setText("     ");
         button6.setEnabled(true);
-        button6.setText(" ");
+        button6.setText("      ");
         button7.setEnabled(true);
-        button7.setText(" ");
+        button7.setText("       ");
         button8.setEnabled(true);
-        button8.setText(" ");
+        button8.setText("        ");
         button9.setEnabled(true);
-        button9.setText(" ");
+        button9.setText("         ");
         playerTurn.setText("Player " + currentPlayer + "'s turn");
         newGame.setText("New game");
     }
@@ -95,6 +95,23 @@ public class MainActivity extends AppCompatActivity {
         currentPlayer = currentPlayerIs(player);
         playerTurn.setText("Player " + currentPlayer + "'s turn");
         buttonInUse.setEnabled(false);
+        String winner = checkForWin();
+        declareTheWinner(winner);
+    }
+
+    public void declareTheWinner(String winner) {
+        if(winner != null || winner == ""){
+            playerTurn.setText("Player " + winner + " won the game");
+            button1.setEnabled(false);
+            button2.setEnabled(false);
+            button3.setEnabled(false);
+            button4.setEnabled(false);
+            button5.setEnabled(false);
+            button6.setEnabled(false);
+            button7.setEnabled(false);
+            button8.setEnabled(false);
+            button9.setEnabled(false);
+        }
     }
 
     public void onClick(View v){
@@ -128,5 +145,62 @@ public class MainActivity extends AppCompatActivity {
         } else if(v.equals(newGame)){
             gameSetup();
         }
+    }
+
+    public String checkForWin(){
+
+        // get button data
+        String text1 = (String)button1.getText();
+        String text2 = (String)button2.getText();
+        String text3 = (String)button3.getText();
+        String text4 = (String)button4.getText();
+        String text5 = (String)button5.getText();
+        String text6 = (String)button6.getText();
+        String text7 = (String)button7.getText();
+        String text8 = (String)button8.getText();
+        String text9 = (String)button9.getText();
+        boolean winner = false;
+        String winnerText;
+
+        // look for winner if they exist
+        winner = didSomeoneWin(text1,text2,text3);
+        if(winner){
+            return text1;
+        }
+        winner = didSomeoneWin(text4,text5,text6);
+        if(winner){
+            return text4;
+        }
+        winner = didSomeoneWin(text7,text8,text9);
+        if(winner){
+            return text7;
+        }
+        winner = didSomeoneWin(text1,text4,text7);
+        if(winner){
+            return text1;
+        }
+        winner = didSomeoneWin(text2,text5,text8);
+        if(winner){
+            return text2;
+        }
+        winner = didSomeoneWin(text3,text6,text9);
+        if(winner){
+            return text3;
+        }
+        winner = didSomeoneWin(text1,text5,text9);
+        if(winner){
+            return text1;
+        }
+        winner = didSomeoneWin(text3,text5,text7);
+        if(winner){
+            return text3;
+        }
+        return null;
+    }
+
+    public boolean didSomeoneWin(String  box1, String  box2, String  box3){
+        if(box1 == box2 && box1 == box3)
+            return true;
+        return false;
     }
 }
