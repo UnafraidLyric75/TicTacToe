@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean didSomeoneWin(String  box1, String  box2, String  box3){
-        if(box1 == box2 && box1 == box3)
+        if(box1 == box2 && box1 == box3 )
             return true;
         return false;
     }
